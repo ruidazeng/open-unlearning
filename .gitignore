@@ -19,7 +19,6 @@ __pycache__
 *.out
 *.sh
 paper_models
-notebook/
 
 *.ttf
 scripts/
