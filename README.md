@@ -127,13 +127,6 @@ python src/train.py --config-name=unlearn.yaml experiment=unlearn/tofu/default \
   forget_split=forget10 retain_split=retain90 trainer=GradAscent task_name=SAMPLE_UNLEARN
 ```
 
-For WMDP unlearning with RMU:
-
-```bash
-python src/train.py --config-name=unlearn.yaml experiment=unlearn/wmdp/default \
-  trainer=RMU task_name=WMDP_CYBER_UNLEARN
-```
-
 - `experiment`- Path to the Hydra config file [`configs/experiment/unlearn/tofu/default.yaml`](configs/experiment/unlearn/tofu/default.yaml) with default experimental settings for TOFU unlearning, e.g. train dataset, eval benchmark details, model paths etc..
 - `forget_split/retain_split`- Sets the forget and retain dataset splits.
 - `trainer`- Load [`configs/trainer/GradAscent.yaml`](configs/trainer/GradAscent.yaml) and override the unlearning method with the handler (see config) implemented in [`src/trainer/unlearn/grad_ascent.py`](src/trainer/unlearn/grad_ascent.py).
@@ -149,16 +142,6 @@ python src/eval.py --config-name=eval.yaml experiment=eval/tofu/default \
   model.model_args.pretrained_model_name_or_path=open-unlearning/tofu_${model}_full \
   retain_logs_path=saves/eval/tofu_${model}_retain90/TOFU_EVAL.json \
   task_name=SAMPLE_EVAL
-```
-
-For WMDP evaluation:
-
-```bash
-model=Llama-3.2-1B-Instruct
-python src/eval.py --config-name=eval.yaml experiment=eval/wmdp/default \
-  model=${model} \
-  model.model_args.pretrained_model_name_or_path=meta-llama/Llama-3.2-1B-Instruct \
-  task_name=WMDP_EVAL
 ```
 
 - `experiment`- Path to the evaluation configuration [`configs/experiment/eval/tofu/default.yaml`](configs/experiment/eval/tofu/default.yaml).
@@ -235,14 +218,6 @@ If you use OpenUnlearning in your research, please cite OpenUnlearning and the b
   primaryClass={cs.CL},
   url={https://arxiv.org/abs/2407.06460},
 }
-@misc{li2024wmdp,
-  title={The WMDP Benchmark: Measuring and Reducing Malicious Use With Unlearning}, 
-  author={Nathaniel Li and Alexander Pan and Anjali Gopal and Summer Yue and Daniel Berrios and Alice Gatti and Justin D. Li and Ann-Kathrin Dombrowski and Shashwat Goel and Long Phan and Gabriel Mukobi and Nathan Helm-Burger and Rassin Lababidi and Lennart Justen and Andrew B. Liu and Michael Chen and Isabelle Barrass and Oliver Zhang and Xiaoyuan Zhu and Rishub Tamirisa and Bhrugu Bharathi and Adam Khoja and Zhenqi Zhao and Ariel Herbert-Voss and Cort B. Breuer and Samuel Marks and Oam Patel and Andy Zou and Mantas Mazeika and Zifan Wang and Palash Oswal and Weiran Liu and Adam A. Hunt and Justin Tienken-Harder and Kevin Y. Shih and Kemper Talley and John Guan and Russell Kaplan and Ian Steneker and David Campbell and Brad Jokubaitis and Alex Levinson and Jean Wang and William Qian and Kallol Krishna Karmakar and Steven Basart and Stephen Fitz and Mindy Levine and Ponnurangam Kumaraguru and Uday Tupakula and Vijay Varadharajan and Yan Shoshitaishvili and Jimmy Ba and Kevin M. Esvelt and Alexandr Wang and Dan Hendrycks},
-  year={2024},
-  eprint={2403.03218},
-  archivePrefix={arXiv},
-  primaryClass={cs.LG}
-}
 ```
 </details>
 
@@ -251,7 +226,7 @@ If you use OpenUnlearning in your research, please cite OpenUnlearning and the b
 ### 🤝 Acknowledgements
 
 - This repo is inspired from [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory). 
-- The [TOFU](https://github.com/locuslab/tofu), [MUSE](https://github.com/swj0419/muse_bench), and [WMDP](https://github.com/centerforaisafety/wmdp) benchmarks served as the foundation for our re-implementation. 
+- The [TOFU](https://github.com/locuslab/tofu) and [MUSE](https://github.com/swj0419/muse_bench) benchmarks served as the foundation for our re-implementation. 
 
 ---
 
