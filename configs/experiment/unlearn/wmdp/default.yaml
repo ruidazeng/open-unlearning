@@ -4,16 +4,16 @@ defaults:
   - override /model: Llama-3.2-1B-Instruct
   - override /trainer: RMU
   - override /data: unlearn
-  - override /data/datasets@data.forget: WMDP_cyber_forget
-  - override /data/datasets@data.retain: WMDP_cyber_retain
+  - override /data/datasets@data.forget: WMDP_cyber_forget_corpus
+  - override /data/datasets@data.retain: WMDP_cyber_retain_corpus
   - override /eval: wmdp
 
 model:
   model_args:
     pretrained_model_name_or_path: meta-llama/Llama-3.2-1B-Instruct
 
-forget_split: test
-retain_split: test
+forget_split: train
+retain_split: train
 holdout_split: test
 retain_logs_path: null
 
@@ -27,16 +27,16 @@ eval:
 data:
   anchor: forget
   forget:
-    WMDP_cyber_forget: 
+    WMDP_cyber_forget_corpus: 
       args:
         hf_args:
-          name: "wmdp-cyber"
+          name: "cyber-forget-corpus"
           split: ${forget_split}
   retain:
-    WMDP_cyber_retain:
+    WMDP_cyber_retain_corpus:
       args:
         hf_args:
-          name: "wmdp-cyber"
+          name: "cyber-retain-corpus"
           split: ${retain_split}
 
 trainer:
